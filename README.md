@@ -4,7 +4,7 @@ A Machine Learning web application that predicts **house prices in California** 
 Built with **Flask**, trained using **scikit-learn**, and deployed on **Render Cloud**. :contentReference[oaicite:1]{index=1}
 
 <p align="center">
-  <img src="images/banner.png" alt="California House Price Prediction" width="90%">
+  <img src="Screenshot 2025-12-26 225519.png" alt="California House Price Prediction" width="90%">
 </p>
 
 <p align="center">
@@ -37,7 +37,6 @@ This application predicts housing prices using a regression model trained on the
 ## 🏗️ Project Structure
 
 
-# California_House-Pricing-Dataset
 ## software And Tools Requirments
 1.[Github Account](https://github.com)
 2.[HerokuAccount](https://heroku.com)
