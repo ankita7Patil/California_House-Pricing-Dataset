@@ -1,3 +1,197 @@
-<h1>
-    Hello World
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI House Price Predictor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background: radial-gradient(circle at top, #111827, #020617);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Poppins;
+}
+
+/* ===== NEON BACKGROUND GRID ===== */
+body::before{
+    content:"";
+    position:absolute;
+    width:200%;
+    height:200%;
+    background:
+        linear-gradient(transparent 95%, rgba(0,255,255,0.08) 96%),
+        linear-gradient(90deg, transparent 95%, rgba(0,255,255,0.08) 96%);
+    background-size:60px 60px;
+    animation:gridMove 18s linear infinite;
+}
+
+@keyframes gridMove{
+    from{transform:translate(0,0);}
+    to{transform:translate(-60px,-60px);}
+}
+
+/* ===== MAIN PANEL ===== */
+.panel{
+    position:relative;
+    width:900px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(10,15,30,0.9);
+    box-shadow:0 0 40px rgba(0,255,255,0.15);
+    border:2px solid transparent;
+}
+
+.panel::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:25px;
+    background:linear-gradient(120deg,#00ffff,#ff00ff,#00ffff);
+    z-index:-1;
+    filter:blur(12px);
+    animation:neon 4s linear infinite;
+}
+
+@keyframes neon{
+    0%{filter:hue-rotate(0deg);}
+    100%{filter:hue-rotate(360deg);}
+}
+
+/* ===== TITLE ===== */
+.title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.title h1{
+    font-family:Orbitron;
+    font-size:36px;
+    color:#00ffff;
+    letter-spacing:2px;
+}
+
+.title span{
+    font-size:13px;
+    color:#9ca3af;
+}
+
+/* ===== FORM ===== */
+form{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.input-box{
+    position:relative;
+}
+
+.input-box input{
+    width:100%;
+    padding:16px;
+    background:#020617;
+    border:1px solid #1f2937;
+    border-radius:12px;
+    color:#e5e7eb;
+    outline:none;
+    font-size:13px;
+}
+
+.input-box input:focus{
+    border-color:#00ffff;
+    box-shadow:0 0 12px rgba(0,255,255,0.3);
+}
+
+.input-box label{
+    position:absolute;
+    top:-8px;
+    left:12px;
+    background:#020617;
+    padding:0 6px;
+    font-size:11px;
+    color:#00ffff;
+}
+
+/* ===== BUTTON ===== */
+button{
+    grid-column:span 4;
+    padding:18px;
+    border-radius:15px;
+    border:none;
+    font-family:Orbitron;
+    font-size:16px;
+    letter-spacing:1px;
+    background:linear-gradient(135deg,#00ffff,#ff00ff);
+    color:#020617;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 25px rgba(0,255,255,0.6);
+}
+
+/* ===== RESULT ===== */
+.result{
+    margin-top:30px;
+    text-align:center;
+    font-size:22px;
+    color:#00ffcc;
+    font-family:Orbitron;
+    animation:pulse 1.2s infinite alternate;
+}
+
+@keyframes pulse{
+    from{opacity:0.7;}
+    to{opacity:1;}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1000px){
+    .panel{width:95%;}
+    form{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+
+    <div class="title">
+        <h1>AI PROPERTY ENGINE</h1>
+        <span>California Housing Prediction System</span>
+    </div>
+
+    <form action="/predict" method="post">
+
+        <div class="input-box"><label>MedInc</label><input name="MedInc" required></div>
+        <div class="input-box"><label>HouseAge</label><input name="HouseAge" required></div>
+        <div class="input-box"><label>AveRooms</label><input name="AveRooms" required></div>
+        <div class="input-box"><label>AveBedrms</label><input name="AveBedrms" required></div>
+        <div class="input-box"><label>Population</label><input name="Population" required></div>
+        <div class="input-box"><label>AveOccup</label><input name="AveOccup" required></div>
+        <div class="input-box"><label>Latitude</label><input name="Latitude" required></div>
+        <div class="input-box"><label>Longitude</label><input name="Longitude" required></div>
+
+        <button type="submit">⚡ PREDICT PROPERTY VALUE</button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
